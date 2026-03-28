@@ -1,13 +1,19 @@
 ---
 name: star-exec-brief
-description: Generate a concise project brief in Chinese using the STAR framework from workspace specification documents and the latest code change history. Use when Codex needs to read Spec, PRD, design, requirements, or other project docs plus recent git changes, then explain the project in language that is easy for non-technical readers to understand while preserving clear business value, high-level technical actions, and measurable or decision-relevant outcomes.
+description: Generate a concise STAR project brief from workspace specification documents and the latest code change history. Use when Codex needs to read Spec, PRD, design, requirements, or other project docs plus recent git changes, then explain the project in language that is easy for non-technical readers to understand while preserving clear business value, high-level technical actions, and measurable or decision-relevant outcomes.
 ---
 
 # Star Exec Brief
 
 ## Overview
 
-Read the current workspace, extract the project intent from specification documents and the newest implementation signals, then synthesize a Chinese project brief that is easy for non-technical readers to understand.
+Read the current workspace, extract the project intent from specification documents and the newest implementation signals, then synthesize a STAR project brief that is easy for non-technical readers to understand.
+
+Match the output language to the user's request language:
+
+- If the user asks in Chinese, produce the final document in Chinese.
+- If the user asks in English, produce the final document in English.
+- If the user explicitly asks for a specific language, follow that instruction.
 
 Prefer business language over engineering jargon. Stay precise, concise, and evidence-based.
 
@@ -38,8 +44,9 @@ Build the document around four sections only:
 
 Write for non-technical readers.
 
-- Use Chinese in the final document.
+- Match the final document language to the user's natural language input unless the user explicitly requests another language.
 - Keep the tone professional, concise, and business-oriented.
+- Keep the style practical and plain. Avoid decorative wording, inflated claims, and rhetorical flourishes.
 - Lead with impact, not implementation trivia.
 - Prefer short paragraphs or short bullets only when they improve scanability.
 - Avoid acronyms or code terms unless they are necessary; if used, explain them in plain language.
@@ -51,22 +58,26 @@ Write for non-technical readers.
 Default to this structure:
 
 ```markdown
-Project brief in Chinese
+Project brief
 
-Situation (include the Chinese label 情景)
+Situation
 <1 short paragraph on the pain point and why it mattered>
 
-Task (include the Chinese label 任务)
+Task
 <1 short paragraph on the target state or core objective>
 
-Action (include the Chinese label 行动)
+Action
 - <high-level action 1>
 - <high-level action 2>
 - <high-level action 3>
 
-Result (include the Chinese label 结果)
+Result
 <1 short paragraph with quantified gains if supported, otherwise concrete business or delivery outcomes>
 ```
+
+If the output is in Chinese, use the Chinese section labels `Situation (情景)`, `Task (任务)`, `Action (行动)`, and `Result (结果)`.
+
+If the output is in English, use the English section labels only.
 
 ## Quality Bar
 
@@ -74,6 +85,7 @@ Result (include the Chinese label 结果)
 - Ensure `Action` stays high-level and understandable to an executive audience.
 - Ensure `Result` answers "so what" for the business, organization, or delivery flow.
 - Ensure the final document can be read standalone without the original Spec or commit log.
+- Ensure the writing stays direct and practical rather than polished for its own sake.
 
 ## Fallback Behavior
 
